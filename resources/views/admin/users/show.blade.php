@@ -14,11 +14,6 @@
         <div class="col-md-8">
           <div class="form-padding">
             <h4>{{$user->firstname}} {{$user->lastname}}'s Profile
-              <div class="pull-right">
-                <a href="/admin/users/{{$user->id}}/edit" class="btn btn-primary btn-xs action-btn">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                </a>
-              </div>
             </h4>
             <p><b>Member since:</b> {{ date('F d, Y', strtotime($user->created_at)) }}</p>
             <p><b>Bio:</b> {{$user->bio}}</p>

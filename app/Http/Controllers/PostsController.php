@@ -8,6 +8,8 @@ use App\Admin;
 
 use App\Post;
 
+use App\Category;
+
 use Auth;
 
 use Like;
@@ -47,7 +49,10 @@ class PostsController extends Controller
     public function create()
     {
         //
-        return view('admin.posts.create');
+
+        $category = Category::all();
+
+        return view('admin.posts.create',compact('category'));
     }
 
     /**
@@ -74,6 +79,7 @@ class PostsController extends Controller
             'title' => $request->title,
             'body' => $request->body,
             'intro' => $request->intro,
+            'category' => $request->category,
             'tags' => $request->tags,
             'admin_id' => $user->id,
             'post_image' => $filename
@@ -108,12 +114,13 @@ class PostsController extends Controller
     public function edit($id)
     {
         //
-
         $user = Auth::guard('admins')->user();
+
+        $category = Category::all();
 
         $post = $user->posts()->find($id);
 
-        return view('admin.posts.edit',compact('post'));
+        return view('admin.posts.edit',compact('post','category'));
     }
 
     /**
@@ -144,6 +151,7 @@ class PostsController extends Controller
             'title' => $request->title,
             'body' => $request->body,
             'intro' => $request->intro,
+            'category' => $request->category,
             'tags' => $request->tags,
             'admin_id' => $user->id,
             'post_image' => $filename

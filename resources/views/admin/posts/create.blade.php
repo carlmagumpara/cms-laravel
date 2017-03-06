@@ -21,10 +21,18 @@
 	  			<label for="intro" class="control-label">Intro:</label>
 	  			<input type="text" class="form-control" name="intro" placeholder="Intro">
 	  		</div>
+        <div class="form-group">
+          <label for="category" class="control-label">Category:</label>
+          <select class="selectpicker form-control" data-live-search="true" title="Please select a lunch ..." name="category">
+            @foreach ($category as $cat)
+              <option value="{{ $cat->category }}">{{ $cat->category }}</option>
+            @endforeach
+          </select>
+        </div>
 	  		<div class="form-group">
 	  			<label for="tags" class="control-label">Tags:</label>
-	          <div class="tagsinput-default">
-	            <input class="tagsinput" data-role="tagsinput" value="">
+	          <div class="tagsinput-primary">
+	            <input class="tagsinput" data-role="tagsinput">
               <input type="hidden" name="tags" class="tags-hidden">
 	          </div>
 	  		</div>

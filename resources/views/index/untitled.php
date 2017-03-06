@@ -1,0 +1,1 @@
+strtolower(str_replace(" ","-",$post->title))

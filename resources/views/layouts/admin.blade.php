@@ -197,12 +197,5 @@
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
     <script src="{{ asset('bower_resources/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#summernote').summernote({
-              height:500,
-            });
-        });
-    </script>
     </body>
 </html>

@@ -16,11 +16,12 @@
 // });
 
 Route::get('/', 'IndexController@index');
-Route::get('/posts/', 'IndexController@searchBlog');
-Route::get('/posts/tag/', 'IndexController@searchBlogByTags');
+Route::get('/blog/search', 'IndexController@searchBlog');
+Route::get('/blog/tag/', 'IndexController@searchBlogByTags');
+Route::get('/blog/category/{id}', 'IndexController@searchBlogByCategory');
 
 // Show Post
-Route::get('/post/{id}', 'IndexController@show');
+Route::get('/blog/{title}', 'IndexController@show');
 
 // Comment
 Route::post('/comment/store', 'CommentsController@store');

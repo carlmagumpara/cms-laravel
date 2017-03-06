@@ -13,6 +13,7 @@
           <th>Title</th>
           <th>Body</th>
           <th>Intro</th>
+          <th>Category</th>
           <th>Tags</th>
           <th>Author</th>
           <th style="width: 150px;">Action</th>
@@ -24,6 +25,7 @@
             <td>{{ $post->title }}</td>
             <td>{{ str_limit($post->body, $limit = 150, $end = '...') }}</td>
             <td>{{ $post->intro }}</td>
+            <td>{{ $post->category }}</td>
             <td>
               @php
                 for ($i = 0; $i < count(json_decode($post->tags)); $i++)

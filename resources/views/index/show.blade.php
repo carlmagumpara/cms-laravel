@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="post-header flex-center" style="background-image: url('/uploads/post-header/{{$post->post_image}}');">
-  <div class="blur">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <h1 class="white text-left title-header" style="margin-top: 100px;">{{$post->title}}</h1>
-      </div>
+<div class="post-header" style="background-image: url('/uploads/post-header/{{$post->post_image}}');">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h2 class="white text-left title-header">
+        {{$post->title}}
+      </h2>
     </div>
   </div>
 </div>
@@ -15,15 +15,28 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <h3>{{$post->title}}</h3>
-      <p><small>Posted by: {{$post->author->name}}</small></p>
-      <p><small>Posted on: {{ date('F d, Y', strtotime($post->created_at)) }}</small></p>
       {!! $post->body !!}
-      <p><span class="fui-tag"></span> <small> Tags: </small>
-      @for ($i = 0; $i < count(json_decode($post->tags)); $i++)
-        <span class="badge"> 
-          <a href="/posts/tag/?tag={{json_decode($post->tags)[$i]}}" class="tags">{{ json_decode($post->tags)[$i]}}</a>
-        </span>
-      @endfor
+      <p>
+        <small><span class="fui-new"></span> Posted by: {{$post->author->name}}</small>
+      </p>
+      <p>
+        <small><span class="fui-calendar"></span> Posted on: {{ date('F d, Y', strtotime($post->created_at)) }}</small>
+      </p>
+      <p>
+        <span class="fui-tag"></span> 
+        <small> Tags:
+          @for ($i = 0; $i < count(json_decode($post->tags)); $i++)
+            <span class="badge"> 
+              <a href="/blog/tag/?tag={{json_decode($post->tags)[$i]}}" class="tags">{{ json_decode($post->tags)[$i]}}</a>
+            </span>
+          @endfor
+        </small>
+      </p>
+      <p>
+        <small>
+          <span class="fui-list-large-thumbnails"></span> Category:
+          <a href="/blog/category/{{$post->category}}">{{$post->category}}</a>
+        </small>
       </p>
       @if (Auth::user())
         <div class="like-buttons">
@@ -120,7 +133,7 @@
                       </p>
                     </div>
                     <div class="text-right">
-                      <a @click.prevent="showReply(comment.id)" href="#" class="btn btn-default btn-xs">
+                      <a @click.prevent="showReply(comment.id)" href="#" class="btn btn-link btn-xs">
                       <i class="fa fa-reply"></i> reply</a>
                     </div>
                   </div>
@@ -161,7 +174,8 @@
                       </div>
                       <div class="col-md-9 col-sm-9">
                         <div class="panel panel-default arrow left">
-                          <div class="panel-heading right">Reply
+                          <div class="panel-heading right reply-header">
+                            <small>Reply</small>
                             @if (Auth::user())
                               <div class="btn-group pull-right" v-if="reply.user_id == {{ Auth::user()->id }}">
                                 <button data-toggle="dropdown" class="btn btn-link dropdown-toggle" type="button"><span class="fui-triangle-down-small"></span></button>
@@ -187,7 +201,7 @@
                             </div>
                             @if (Auth::user())
                               <div class="text-right">
-                                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-reply"></i> reply</a>
+                                <a href="#" class="btn btn-link btn-xs"><i class="fa fa-reply"></i> reply</a>
                               </div>
                             @endif
                           </div>

@@ -20,6 +20,8 @@ use App\Reply;
 
 use App\Like;
 
+use App\Category;
+
 class IndexController extends Controller
 {
     /**
@@ -35,7 +37,9 @@ class IndexController extends Controller
 
         $comments = Comment::all();
 
-        return view('index.index',compact('posts','comments'));
+        $category = Category::all();
+
+        return view('index.index',compact('posts','comments','category'));
     }
 
     /**
@@ -69,17 +73,10 @@ class IndexController extends Controller
     public function show($id)
     {
         //
-        $users = User::all();
-
-        $user = Auth::user();
 
         $post = Post::with('author')->findOrFail($id);
 
-        $comments = Comment::with('comment_author')->where('post_id',$id)->orderBy('created_at','DESC')->paginate(10);
-        
-        $replies = Reply::with('reply_author')->orderBy('created_at','DESC');
-
-        return view('index.show',compact('users','post','comments','replies','likes'));
+        return view('index.show',compact('post'));
     }
 
     /**
@@ -120,19 +117,35 @@ class IndexController extends Controller
 
         $search = $request->search;
 
-        $results = Post::with('author')->where('title', 'like', '%'.$search.'%')->orderBy('created_at','DESC')->paginate(5);
+        $category = Category::all();
 
-        return view('index.search',compact('results','search'));
+        $posts = Post::with('author')->where('title', 'like', '%'.$search.'%')->orderBy('created_at','DESC')->paginate(5);
+
+        return view('index.search',compact('posts','search','category'));
 
     }
 
     public function searchBlogByTags(Request $request){
 
-        $search = $request->tag;
+        $tag = $request->tag;
 
-        $results = Post::with('author')->where('tags', 'like', '%'.$search.'%')->orderBy('created_at','DESC')->paginate(5);
+        $category = Category::all();
 
-        return view('index.search',compact('results','search'));
+        $posts = Post::with('author')->where('tags', 'like', '%'.$tag.'%')->orderBy('created_at','DESC')->paginate(5);
+
+        return view('index.tag',compact('posts','tag','category'));
+
+    }
+
+    public function searchBlogByCategory($id){
+
+        $cat = $id;
+
+        $category = Category::all();
+
+        $posts = Post::with('author')->where('category', $id)->orderBy('created_at','DESC')->paginate(5);
+
+        return view('index.category',compact('posts','category','cat'));
 
     }
 

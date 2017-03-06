@@ -4,10 +4,8 @@
 <div class="container main">
   <div class="row">
     <div class="col-md-8">
-      <blockquote>
-          <p><small><span class="fui-search"></span>&nbsp;&nbsp;{{ $posts->count() }} result(s) found for "{{ $search }}".</p>
-          </small>
-      </blockquote>
+      <h6>Category: {{ $cat }}</h6>
+      <hr>
       <div class="row">
           @foreach ($posts as $post)
               <a href="/blog/{{ $post->id }}">
@@ -44,9 +42,6 @@
       </div>
     </div> 
     <div class="col-md-4">
-      @php
-        $cat = '';
-      @endphp
       @include('index.categories')
     </div>     
   </div>

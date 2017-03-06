@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+  $('#summernote').summernote({
+    height:500,
+  });
+      
   $(".alert").hide();
 
   $('#show-profile').on('hidden.bs.modal', function () {
