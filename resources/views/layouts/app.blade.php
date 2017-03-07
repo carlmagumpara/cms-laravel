@@ -56,6 +56,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
+                        <i class="fa fa-code"></i> 
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -68,18 +69,6 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <form class="navbar-form navbar-right" action="/blog/search/" method="GET" role="search">
-                            <div class="form-group">
-                              <div class="input-group">
-                                <input class="form-control thin-border" name="search" type="search" placeholder="Search blog..">
-                                <span class="input-group-btn">
-                                  <button type="submit" class="btn thin-border"><span class="fui-search"></span></button>
-                                </span>
-                              </div>
-                            </div>
-                          </form>
-                        </li>
                         @if (Auth::guard()->user())
                         <li>
                             <div class="header-avatar">
@@ -120,11 +109,13 @@
 
      @yield('content')
     </div>
-    <footer class="flex-center text-center">
+    <footer>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h1 class="footer-title"><i class="fa fa-code"></i> with <i class="fa fa-heart alizarin"></i>  by Carl</h1>
+            <p class="footer-title">
+                <i class="fa fa-code"></i> 
+            </p>
           </div>
         </div>
       </div>

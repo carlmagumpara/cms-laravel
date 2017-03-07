@@ -61,6 +61,7 @@ class IndexController extends Controller
     public function store(Request $request)
     {
         //
+        return $request->all();
        
     }
 
@@ -73,10 +74,20 @@ class IndexController extends Controller
     public function show($id)
     {
         //
+        $category = Category::all();
 
-        $post = Post::with('author')->findOrFail($id);
+        $title = str_replace('-',' ',$id);
+        $post = DB::table('posts')
+            ->select('posts.id','posts.post_image','posts.title','posts.body','posts.tags','posts.category','admins.name','posts.created_at','posts.updated_at')
+            ->join('admins','admins.id','=','posts.admin_id')
+            ->where('title', $title)
+            ->get();
 
-        return view('index.show',compact('post'));
+        if (empty($post[0]->title)) {
+            return view('index.404');
+        } else {
+            return view('index.show',compact('post','category'));
+        }
     }
 
     /**
@@ -146,6 +157,14 @@ class IndexController extends Controller
         $posts = Post::with('author')->where('category', $id)->orderBy('created_at','DESC')->paginate(5);
 
         return view('index.category',compact('posts','category','cat'));
+
+    }
+
+    public function submit_your_blog_form(){
+
+        $category = Category::all();
+
+        return view('submit_your_blog.form',compact('category'));
 
     }
 

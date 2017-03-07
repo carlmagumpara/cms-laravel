@@ -64,16 +64,16 @@
                   <a href="/admin/posts"><i class="fa fa-list" aria-hidden="true"></i>  Posts </a>
               </li>
               <li>
-                  <a href="#"><i class="fa fa-file" aria-hidden="true"></i>  Pages </a>
-              </li>
-              <li>
-                  <a href="#"><i class="fa fa-comment" aria-hidden="true"></i>  Comments </a>
+                  <a href="/admin/comments"><i class="fa fa-comment" aria-hidden="true"></i>  Comments </a>
               </li>
               <li>
                   <a href="/admin/users"><i class="fa fa-user" aria-hidden="true"></i>  Users </a>
               </li>
               <li>
                   <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>  Events</a>
+              </li>
+              <li>
+                  <a href="#"><i class="fa fa-gear" aria-hidden="true"></i>  Settings </a>
               </li>
               <li>
                   <a href="#"><i class="fa fa-info" aria-hidden="true"></i>  About</a>
@@ -140,13 +140,16 @@
                                   <a href="#"><i class="fa fa-file" aria-hidden="true"></i>  Pages </a>
                               </li>
                               <li class="hidden-md hidden-lg">
-                                  <a href="#"><i class="fa fa-comment" aria-hidden="true"></i>  Comments </a>
+                                  <a href="/admin/comments"><i class="fa fa-comment" aria-hidden="true"></i>  Comments </a>
                               </li>
                               <li class="hidden-md hidden-lg">
                                   <a href="/admin/users"><i class="fa fa-user" aria-hidden="true"></i>  Users </a>
                               </li>
                               <li class="hidden-md hidden-lg">
                                   <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>  Events</a>
+                              </li>
+                               <li class="hidden-md hidden-lg">
+                                  <a href="#"><i class="fa fa-gear" aria-hidden="true"></i>  Settings </a>
                               </li>
                               <li class="hidden-md hidden-lg">
                                   <a href="#"><i class="fa fa-info" aria-hidden="true"></i>  About</a>

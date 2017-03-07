@@ -1,8 +1,10 @@
 $(document).ready(function(){
 
-  $('#summernote').summernote({
-    height:500,
-  });
+  if ($('#summernote').length > 0) {
+    $('#summernote').summernote({
+      height:500,
+    });
+  }
       
   $(".alert").hide();
 

@@ -3,12 +3,16 @@
 @section('content')
 <div class="container main">
   <div class="row">
-    <div class="col-md-8">
-      <h6>Tag: {{ $tag }}</h6>
+    <div class="col-md-8 post-content">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">Blog</li>
+      <li class="breadcrumb-item">Tag</li>
+      <li class="breadcrumb-item active">{{ $tag }}</li>
+    </ol>
       <hr>
       <div class="row">
           @foreach ($posts as $post)
-              <a href="/blog/{{ $post->id }}">
+              <a href="/blog/{{ strtolower(str_replace(' ','-',$post->title))}}">
                   <div class="col-md-12 post-item">
                       <div class="row">
                           <div class="col-md-6">
@@ -41,7 +45,7 @@
           @endforeach
       </div>
     </div> 
-    <div class="col-md-4">
+    <div class="col-md-4 full-on-mobile">
       @php
         $cat = '';
       @endphp

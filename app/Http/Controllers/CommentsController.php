@@ -24,6 +24,14 @@ class CommentsController extends Controller
     public function index()
     {
         //
+
+        $comments = DB::table('comments')
+            ->select('posts.title','comments.comment','users.firstname','users.lastname')
+            ->join('users','users.id','=','comments.user_id')
+            ->join('posts','posts.id','=','comments.post_id')
+            ->paginate(10);
+
+        return view('admin.comments.index',compact('comments'));
     }
 
     /**

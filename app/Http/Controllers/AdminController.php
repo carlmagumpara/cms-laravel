@@ -8,6 +8,12 @@ use App\Admin;
 
 use Auth;
 
+use App\User;
+
+use App\Post;
+
+use App\Comment;
+
 class AdminController extends Controller
 {
 
@@ -22,7 +28,14 @@ class AdminController extends Controller
     public function index()
     {
         //
-        return view('admin.overview.overview');
+
+        $users = User::all();
+
+        $comments = Comment::all();
+
+        $posts = Post::all();
+
+        return view('admin.overview.index',compact('users','posts','comments'));
     }
 
     /**
@@ -89,24 +102,6 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function change_theme(){
-
-        return view('admin.change-theme');
-
-    }
-
-    public function change_theme_update(Request $request){
-
-        $id = Auth::guard('admins')->user()->id;
-
-        $admin = Admin::findOrFail($id);
-
-        $admin->update($request->all());
-
-        return redirect('/admin/change-theme/');
-
     }
 
 }

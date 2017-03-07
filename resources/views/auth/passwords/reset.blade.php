@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+                <h3 class="text-center login-header">RESET PASSWORD</h3>
 
                 <div class="panel-body">
                     @if (session('status'))

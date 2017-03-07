@@ -37,7 +37,7 @@ class PostsController extends Controller
 
         $posts = Post::with('author')->orderBy('created_at','DESC')->paginate(5);
 
-        return view('admin.posts.posts',compact('posts'));
+        return view('admin.posts.index',compact('posts'));
 
     }
 
@@ -179,17 +179,6 @@ class PostsController extends Controller
         $post->delete();
 
         return back();
-    }
-
-    public function my_post()
-    {
-        //
-        $user = Auth::guard('admins')->user();
-
-        $posts = $user->posts()->orderBy('created_at','DESC')->paginate(5);
-
-        return view('admin.posts.my_post',compact('posts'));
-
     }
 
 }

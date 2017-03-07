@@ -15,10 +15,17 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'IndexController@index');
+Route::get('/', function(){
+  return redirect('/blog');
+});
+Route::get('/blog', 'IndexController@index');
 Route::get('/blog/search', 'IndexController@searchBlog');
 Route::get('/blog/tag/', 'IndexController@searchBlogByTags');
 Route::get('/blog/category/{id}', 'IndexController@searchBlogByCategory');
+
+// Request a Post
+Route::get('/submit-your-blog', 'IndexController@submit_your_blog_form');
+Route::post('/submit-your-blog/store', 'IndexController@store');
 
 // Show Post
 Route::get('/blog/{title}', 'IndexController@show');
@@ -63,7 +70,9 @@ Route::post('/admin/posts/store', 'PostsController@store');
 Route::put('/admin/posts/{id}/update/', 'PostsController@update');
 Route::delete('/admin/posts/{id}/delete/', 'PostsController@destroy');
 Route::get('/admin/posts/{id}/show/', 'PostsController@show');
-Route::get('/admin/posts/my_post/', 'PostsController@my_post');
+
+// Comments
+Route::get('/admin/comments', 'CommentsController@index');
 
 // Users
 Route::get('/admin/users', 'UsersController@index');

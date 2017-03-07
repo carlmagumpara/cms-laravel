@@ -15,10 +15,13 @@ var App = new Vue({
     show_profile: false,
     activities: []
   },
-  created: function(){
+  created(){
+    this.postReplies();
     this.postComments();
     this.postLikes();
-    this.postReplies();
+  },
+  computed(){
+    
   },
   methods: {
     changePassword(){
@@ -202,8 +205,9 @@ var App = new Vue({
     replyForm(id){
       return 'reply-form-'+id;
     },
-    showPost(post_id,id){
-      return '/blog/'+post_id+'/#'+id;
+    showPost(post_title,id){
+      var title = post_title.replace(/\s+/g, '-').toLowerCase();
+      return '/blog/'+title+'/#'+id;
     },
     showReply(id){
       $('.reply-form-'+id).slideToggle();

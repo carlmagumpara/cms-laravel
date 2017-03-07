@@ -1,6 +1,15 @@
 body {
   padding-top: 70px;
 }
+.overview-item p,.overview-item span {
+  color: #333;
+}
+.overview-item {
+  border-radius: 0px;
+}
+.overview-item:hover {
+  background-color: #eee;
+}
 .no-bg {
   background-color: transparent;
 }
